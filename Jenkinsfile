@@ -1,5 +1,5 @@
 pipeline {
-    agent none // Aucun agent spécifié ici, donc l'agent sera choisi par Jenkins
+    agent any // Aucun agent spécifié ici, donc l'agent sera choisi par Jenkins
 
     stages {
       stage('Checkout') {

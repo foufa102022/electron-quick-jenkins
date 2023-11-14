@@ -9,16 +9,7 @@ pipeline {
 
 
     stages {
-         stage('build') {
-    steps {
-        script {
-            // Ajoutez le chemin vers node_modules dans le PATH
-            bat 'set PATH=%PATH%;%WORKSPACE%\\node_modules\\.bin'
-            // Utilisez npm pour exécuter electron-packager
-            bat "${ELECTRON_PACKAGER_PATH} . test1 --platform=win32-x64 test %BUILD_ID%"
-        }
-    }
-}
+         
         stage('Checkout') {
             steps {
                 script {
@@ -35,15 +26,24 @@ pipeline {
                 }
             }
         }
-
-        stage('build') {
-            steps {
-                script {
-                    // Use npm to run electron-packager
-                    bat "${ELECTRON_PACKAGER_PATH} . test1 --platform=win32-x64 test %BUILD_ID%"
-                }
-            }
+stage('build') {
+    steps {
+        script {
+            // Ajoutez le chemin vers node_modules dans le PATH
+            bat 'set PATH=%PATH%;%WORKSPACE%\\node_modules\\.bin'
+            // Utilisez npm pour exécuter electron-packager
+            bat "${ELECTRON_PACKAGER_PATH} . test1 --platform=win32-x64 test %BUILD_ID%"
         }
+    }
+}
+        // stage('build') {
+        //     steps {
+        //         script {
+        //             // Use npm to run electron-packager
+        //             bat "${ELECTRON_PACKAGER_PATH} . test1 --platform=win32-x64 test %BUILD_ID%"
+        //         }
+        //     }
+        // }
     }
 }
 

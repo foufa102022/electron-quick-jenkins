@@ -3,7 +3,19 @@ pipeline {
 
     environment {
         ELECTRON_PACKAGER_PATH = "${workspace}/node_modules/.bin/electron-packager"
+        
     }
+    stage('build') {
+    steps {
+        script {
+            // Ajoutez le chemin vers node_modules dans le PATH
+            bat 'set PATH=%PATH%;%WORKSPACE%\\node_modules\\.bin'
+            // Utilisez npm pour exécuter electron-packager
+            bat "${ELECTRON_PACKAGER_PATH} . test1 --platform=win32-x64 test %BUILD_ID%"
+        }
+    }
+}
+
 
     stages {
         stage('Checkout') {

@@ -5,7 +5,11 @@ pipeline {
         ELECTRON_PACKAGER_PATH = "${workspace}/node_modules/.bin/electron-packager"
         
     }
-    stage('build') {
+   
+
+
+    stages {
+         stage('build') {
     steps {
         script {
             // Ajoutez le chemin vers node_modules dans le PATH
@@ -15,9 +19,6 @@ pipeline {
         }
     }
 }
-
-
-    stages {
         stage('Checkout') {
             steps {
                 script {
